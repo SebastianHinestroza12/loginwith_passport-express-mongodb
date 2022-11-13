@@ -7,8 +7,17 @@ router.get("/", (req, res, next) => {
 
 // Registro
 
-router.get("/singup", (req, res, next) => {});
-router.post("/singup", (req, res, next) => {});
+router.get("/signup", (req, res, next) => {
+  res.render("signup");
+});
+
+router.post("/signup", (req, res, next) => {
+  console.log(req.body);
+  return res.status(201).json({
+    status: "success",
+    user: "Ok",
+  });
+});
 
 // Login
 router.get("/singin", (req, res, next) => {});
