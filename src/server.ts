@@ -3,6 +3,7 @@ import express from "express";
 import * as dotenv from "dotenv";
 import { router } from "./routes/index";
 import morgan from "morgan";
+import "./db";
 dotenv.config();
 
 const app = express();
