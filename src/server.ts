@@ -1,9 +1,13 @@
 const engine = require("ejs-mate");
 import express from "express";
+import session from "express-session";
+import passport from "passport";
 import * as dotenv from "dotenv";
 import { router } from "./routes/index";
 import morgan from "morgan";
 import "./db";
+import "./passport/local-auth";
+import flash from "connect-flash";
 dotenv.config();
 
 const app = express();
@@ -16,6 +20,20 @@ app.set("view engine", "ejs");
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(
+  session({
+    secret: "nysecrets",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+app.use((req, res, next) => {
+  app.locals.signupMessage = req.flash("signupMessage");
+  next();
+});
 
 // Routes
 app.use("/", router);
