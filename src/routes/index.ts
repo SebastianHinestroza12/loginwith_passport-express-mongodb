@@ -1,5 +1,5 @@
 import express from "express";
-import passport from "passport";
+import * as auth from "../middleware/index";
 const router = express.Router();
 
 router.get("/", (req, res, next) => {
@@ -12,16 +12,7 @@ router.get("/signup", (req, res, next) => {
   res.render("signup");
 });
 
-router.post(
-  "/signup",
-  passport.authenticate("local-signup", {
-    successRedirect: "/profile",
-    failureRedirect: "/signup",
-    failureFlash: "Usuario o contraseña incorrecto",
-    passReqToCallback: true,
-  }),
-  (req, res) => {}
-);
+router.post("/signup", auth.postUser(), (req, res) => {});
 
 // Login
 router.get("/singin", (req, res, next) => {});
