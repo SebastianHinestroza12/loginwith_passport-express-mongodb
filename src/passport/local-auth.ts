@@ -21,6 +21,7 @@ passport.use(
       passReqToCallback: true,
     },
     async (req, email, password, done) => {
+      const { name } = req.body;
       const userExits = await User.findOne({ email });
 
       if (userExits) {
@@ -29,6 +30,7 @@ passport.use(
         );
       } else {
         const user = new User();
+        user.name = name;
         user.email = email;
         user.password = password;
         await user.save();
