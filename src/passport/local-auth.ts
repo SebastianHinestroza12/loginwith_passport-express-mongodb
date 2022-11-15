@@ -1,7 +1,6 @@
 import passport from "passport";
 import LocalStrategy from "passport-local";
-import { User } from "../models/user";
-import flash from "connect-flash";
+import User from "../models/user";
 const local = LocalStrategy.Strategy;
 
 passport.serializeUser((user, done) => {
@@ -35,6 +34,31 @@ passport.use(
         await user.save();
         done(null, user);
       }
+    }
+  )
+);
+
+passport.use(
+  "local-signin",
+  new local(
+    {
+      usernameField: "email",
+      passwordField: "password",
+      passReqToCallback: true,
+    },
+    async (req, email, password, done) => {
+      const userExits = await User.findOne({ email });
+      if (!userExits) {
+        return (
+          req.flash("signinMessage", "Usuario Incorrecto"), done(null, false)
+        );
+      }
+      if (!(await userExits?.comparePassword(password))) {
+        return (
+          req.flash("signinMessage", "Contraseña Incorrecta"), done(null, false)
+        );
+      }
+      return done(null, userExits);
     }
   )
 );

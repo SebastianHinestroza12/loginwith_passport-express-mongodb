@@ -2,6 +2,8 @@ import express from "express";
 import * as auth from "../middleware/index";
 const router = express.Router();
 
+//Home
+
 router.get("/", (req, res, next) => {
   res.render("index");
 });
@@ -12,11 +14,13 @@ router.get("/signup", (req, res, next) => {
   res.render("signup");
 });
 
-router.post("/signup", auth.postUser(), (req, res) => {});
+router.post("/signup", auth.registerUser());
 
 // Login
-router.get("/singin", (req, res, next) => {});
-router.post("/singin", (req, res, next) => {});
+router.get("/signin", (req, res, next) => {
+  res.render("signin");
+});
+router.post("/signin", auth.loginUser(), (req, res, next) => {});
 
 //Profile
 
