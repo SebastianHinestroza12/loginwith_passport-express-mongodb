@@ -1,3 +1,4 @@
+import { NextFunction, Request, Response } from "express";
 import passport from "passport";
 
 export const registerUser = () => {
@@ -17,4 +18,15 @@ export const loginUser = () => {
   });
 
   return auth;
+};
+
+export const isAuthenticated = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect("/");
 };

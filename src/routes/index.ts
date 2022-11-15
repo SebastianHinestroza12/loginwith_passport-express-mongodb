@@ -22,9 +22,20 @@ router.get("/signin", (req, res, next) => {
 });
 router.post("/signin", auth.loginUser(), (req, res, next) => {});
 
+//logout
+
+router.get("/logout", function (req, res, next) {
+  req.logout(function (err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
+});
+
 //Profile
 
-router.get("/profile", (req, res, next) => {
+router.get("/profile", auth.isAuthenticated, (req, res, next) => {
   res.render("profile");
 });
 

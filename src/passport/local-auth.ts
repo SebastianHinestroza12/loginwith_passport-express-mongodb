@@ -50,7 +50,7 @@ passport.use(
       const userExits = await User.findOne({ email });
       if (!userExits) {
         return (
-          req.flash("signinMessage", "Usuario Incorrecto"), done(null, false)
+          req.flash("signinMessage", "Usuario No Encontrado"), done(null, false)
         );
       }
       if (!(await userExits?.comparePassword(password))) {
