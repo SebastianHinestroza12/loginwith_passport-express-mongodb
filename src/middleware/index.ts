@@ -2,8 +2,8 @@ import { NextFunction, Request, Response } from "express";
 import passport from "passport";
 
 export const registerUser = () => {
-  const auth = passport.authenticate("local-signup", {
-    successRedirect: "/profile",
+  const auth = passport.authenticate("local-register", {
+    successRedirect: "/signin",
     failureRedirect: "/signup",
     passReqToCallback: true,
   });
@@ -11,9 +11,9 @@ export const registerUser = () => {
   return auth;
 };
 export const loginUser = () => {
-  const auth = passport.authenticate("local-signin", {
+  const auth = passport.authenticate("local-login", {
     successRedirect: "/profile",
-    failureRedirect: "/signin",
+    failureRedirect: "/",
     passReqToCallback: true,
   });
 

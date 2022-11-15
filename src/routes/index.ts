@@ -2,12 +2,6 @@ import express from "express";
 import * as auth from "../middleware/index";
 const router = express.Router();
 
-//Home
-
-router.get("/", (req, res, next) => {
-  res.render("index");
-});
-
 // Registro
 
 router.get("/signup", (req, res, next) => {
@@ -16,14 +10,13 @@ router.get("/signup", (req, res, next) => {
 
 router.post("/signup", auth.registerUser());
 
-// Login
-router.get("/signin", (req, res, next) => {
+// Login Y Principial
+router.get("/", (req, res, next) => {
   res.render("signin");
 });
 router.post("/signin", auth.loginUser(), (req, res, next) => {});
 
 //logout
-
 router.get("/logout", function (req, res, next) {
   req.logout(function (err) {
     if (err) {

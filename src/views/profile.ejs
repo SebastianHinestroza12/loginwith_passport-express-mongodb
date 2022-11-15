@@ -1,10 +1,110 @@
 <%- layout('layouts/main.ejs') %>
 
-<h1>Profile</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background: #eee;
+      }
+      .center-profile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* border: 1px solid #000; */
+        width: 100%;
+        height: 100vh;
+      }
+      .prueba {
+        cursor: pointer;
+        width: 100%;
+        /* border: 1px solid #000; */
+      }
+      .m-t-5 {
+        margin-top: 5px;
+      }
+      .card {
+        background: #fff;
+        transition: 0.5s;
+        border: 0;
+        border-radius: 0.1875rem;
+        width: 100%;
+        box-shadow: none;
+      }
+      .card .body {
+        font-size: 14px;
+        color: #424242;
+        padding: 20px;
+        font-weight: 400;
+      }
+      .profile-page .profile-header {
+        position: relative;
+      }
 
-<div class="card card-body">
-  <h3><%= user.name %></h3>
-  <p><%= user._id %></p>
-  <p><%= user.email %></p>
-  <p><%= user.password %></p>
-</div>
+      .profile-page .profile-header .profile-image img {
+        border-radius: 50%;
+        width: 140px;
+        border: 3px solid #fff;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      }
+
+      .profile-page .profile-sub-header {
+        min-height: 60px;
+        width: 100%;
+      }
+      .cerrar {
+        display: flex;
+        justify-content: right;
+        margin: 20px;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="cerrar">
+      <a href="/logout"
+        ><button type="button" class="btn btn-dark">Cerrar Sessión</button></a
+      >
+    </div>
+
+    <!-- Card Profile -->
+    <div class="center-profile">
+      <div class="container profile-page">
+        <div class="row">
+          <div class="col-xl-6 col-lg-7 col-md-12 prueba">
+            <div class="card profile-header">
+              <div class="body">
+                <div class="row">
+                  <div class="col-lg-4 col-md-4 col-12">
+                    <div class="profile-image float-md-right">
+                      <img
+                        src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                  <div class="col-lg-8 col-md-8 col-12">
+                    <h4 class="m-t-0 m-b-0">
+                      <strong><%= user.name %></strong>
+                    </h4>
+                    <span class="job_post">Full Stack Developer</span>
+                    <p><%= user._id %></p>
+                    <p><%= user.email %></p>
+                    <p><%= user.password %></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -13,7 +13,7 @@ passport.deserializeUser(async (id, done) => {
 });
 
 passport.use(
-  "local-signup",
+  "local-register",
   new local(
     {
       usernameField: "email",
@@ -26,7 +26,8 @@ passport.use(
 
       if (userExits) {
         return (
-          req.flash("signupMessage", "Ya existe el usuario"), done(null, false)
+          req.flash("registerMessage", "Ya existe el usuario"),
+          done(null, false)
         );
       } else {
         const user = new User();
@@ -41,7 +42,7 @@ passport.use(
 );
 
 passport.use(
-  "local-signin",
+  "local-login",
   new local(
     {
       usernameField: "email",
@@ -52,12 +53,12 @@ passport.use(
       const userExits = await User.findOne({ email });
       if (!userExits) {
         return (
-          req.flash("signinMessage", "Usuario No Encontrado"), done(null, false)
+          req.flash("loginMessage", "Usuario No Encontrado"), done(null, false)
         );
       }
       if (!(await userExits?.comparePassword(password))) {
         return (
-          req.flash("signinMessage", "Contraseña Incorrecta"), done(null, false)
+          req.flash("loginMessage", "Contraseña Incorrecta"), done(null, false)
         );
       }
       return done(null, userExits);
