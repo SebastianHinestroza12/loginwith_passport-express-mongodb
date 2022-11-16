@@ -11,12 +11,17 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
-    <style></style>
+    <style>
+      .container-alert {
+        text-align: center;
+      }
+    </style>
     <title>Document</title>
   </head>
   <body>
-    <div class="container">
+    <div class="container container-alert w-50">
       <% if (registerMessage.length>0) { %>
+
       <div class="alert alert-danger" role="alert"><%= registerMessage %></div>
       <%} %> <% if (loginMessage.length>0) { %>
       <div class="alert alert-danger" role="alert"><%= loginMessage %></div>
