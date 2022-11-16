@@ -3,7 +3,7 @@ import passport from "passport";
 
 export const registerUser = () => {
   const auth = passport.authenticate("local-register", {
-    successRedirect: "/signin",
+    successRedirect: "/",
     failureRedirect: "/signup",
     passReqToCallback: true,
   });
