@@ -1,4 +1,4 @@
-# Login de usuarios con node, mongodb, express, typescript y el motor de plantilla EJS para la vista en el backend.
+# Login de usuarios con Node JS<a href="https://nodejs.org" target="_blank"> <img src="https://cdn.pixabay.com/photo/2015/04/23/17/41/node-js-736399_960_720.png" alt="nodejs" height="40"/> </a>, MongoDb, Express<iconify-icon icon="simple-icons:express" width="40"></iconify-icon>, TypeScript y el motor de plantilla EJS para la vista en el backend.
 
 <div align="center">
 
